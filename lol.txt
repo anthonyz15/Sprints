@@ -1,0 +1,6 @@
+Background:C:/Users/antho/PycharmProjects/Sprint1/backgnd.png
+ 
+Building:lol
+Wall:x1=100, y1=100, x2=200, y2=200, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/backgnd.png
+Wall:x1=250, y1=250, x2=300, y2=300, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/backgnd.png
+Wall:x1=350, y1=350, x2=400, y2=400, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/backgnd.png

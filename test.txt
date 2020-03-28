@@ -1,0 +1,11 @@
+Background:C:/Users/antho/PycharmProjects/Sprint1/backgnd.png
+ 
+Building:help
+Wall:x1=320, y1=129, x2=246, y2=309, Height=5, Texture:  
+Wall:x1=246, y1=309, x2=408, y2=310, Height=5, Texture:  
+Wall:x1=408, y1=310, x2=320, y2=128, Height=5, Texture:  
+Building:cuadrado
+Wall:x1=643, y1=156, x2=650, y2=300, Height=5, Texture:  
+Wall:x1=650, y1=300, x2=859, y2=277, Height=5, Texture:  
+Wall:x1=859, y1=277, x2=835, y2=154, Height=5, Texture:  
+Wall:x1=835, y1=154, x2=641, y2=155, Height=5, Texture:  

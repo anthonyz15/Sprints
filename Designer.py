@@ -8,8 +8,14 @@ from PIL import ImageTk,Image
 backgroundtxt=" "
 Buildingtxt=" "
 texture=" "
+tree=""
+questionfile=""
+
 
 bu=building()
+
+global img,t1,t2,t3
+
 
 
 x1=0
@@ -31,11 +37,23 @@ label=Label(root,text="Coordinates").place(x=350,y=655)
 text_widget = Text(root,width=20,height=1)
 text_widget.pack()
 
+t1 = Image.open("tree1.png")
+t1 = t1.resize((100, 100), Image.ANTIALIAS)
+t1 = ImageTk.PhotoImage(t1)
+
+t2 = Image.open("tree2.png")
+t2 = t2.resize((100, 100), Image.ANTIALIAS)
+t2 = ImageTk.PhotoImage(t2)
+
+t3 = Image.open("tree3.png")
+t3 = t3.resize((100, 100), Image.ANTIALIAS)
+t3 = ImageTk.PhotoImage(t3)
+
 ####################################second window##############################################
 
 top = Toplevel()#lib kinter
 top.title("Map functions")
-top.geometry("590x270")  # Width x Height
+top.geometry("700x400")  # Width x Height
 
 
 # XandY entry
@@ -45,12 +63,18 @@ y1 = tk.Label(top, text="Y1").place(x=90, y=70)
 x2 = tk.Label(top, text="X2").place(x=180, y=70)
 y2 = tk.Label(top, text="Y2").place(x=270, y=70)
 z = tk.Label(top, text="Height").place(x=360, y=70)
+
+tree1 = tk.Label(top, text="X").place(x=270, y=350)
+tree2 = tk.Label(top, text="Y").place(x=360, y=350)
+
 eb = tk.Entry(top, width=20)
 ex1 = tk.Entry(top, width=10)
 ey1 = tk.Entry(top, width=10)
 ex2 = tk.Entry(top, width=10)
 ey2 = tk.Entry(top, width=10)
 ez = tk.Entry(top, width=10)
+tree1 = tk.Entry(top, width=10)
+tree2 = tk.Entry(top, width=10)
 
 
 eb.place(x=40, y=40)
@@ -59,9 +83,18 @@ ey1.place(x=110, y=70)
 ex2.place(x=200, y=70)
 ey2.place(x=290, y=70)
 ez.place(x=400, y=70)
+tree1.place(x=290, y=350)
+tree2.place(x=400, y=350)
 
 text_widget1 = tk.Text(top, width=60, height=8)
 text_widget1.place(x=15, y=100)
+
+clicked= StringVar()
+clicked.set("Tree 1")
+drop= OptionMenu(top,clicked,"Tree 1","Tree 2","Tree 3")
+drop.place(x=100, y=350)
+
+########################################################################################################
 
 def AddBuilding():
     global Buildingtxt,text_widget1,eb,bu,building
@@ -71,6 +104,10 @@ def AddBuilding():
     #Buildingclass = "%s%s\n" % (temp,str(eb.get()))
     bu.buildingname(str(eb.get()))
     text_widget1.delete("1.0", END)
+def buildingpic():
+    file_path = filedialog.askopenfilename()
+    bu.buildingpic(file_path)
+    return file_path
 
 def RemoveBuilding():
     global bu
@@ -101,10 +138,11 @@ def saveMap():
     f.write(textToSave)
     f.close()
 
+
 def bg_load(bg):
     global canva
-    canva.image = ImageTk.PhotoImage(file=bg)
-    canva.create_image(0, 0, image=canva.image, anchor=NW)
+    img = ImageTk.PhotoImage(file=bg)
+    canva.create_image(0, 0, image=img, anchor=NW)
     canva.pack()
 
 
@@ -166,17 +204,31 @@ def remove_building():
     bg_load(backgroundtxt[11:-1])
     draw_theloadmap(wall_draw)
 
-
-
+def Addtree():
+    global tree,tree1,tree2,canva,root,clicked
+    x=int(tree1.get())
+    y=int(tree2.get())
+    tree+= "TreeType:" + str(clicked.get())+", location(%d,%d)"%(x,y) + "\n"
+    if clicked.get() == "Tree 1":
+        canva.create_image(x, y, image=t1,anchor='nw')
+        canva.pack()
+    if clicked.get() == "Tree 2":
+        canva.create_image(x, y, image=t2,anchor='nw')
+        canva.pack()
+    if clicked.get() == "Tree 3":
+        canva.create_image(x, y, image=t3,anchor='nw')
+        canva.pack()
 
 
 #buttons
 building = tk.Button(top, text="Add Building", command=AddBuilding, width=14).place(x=180, y=35)
 submit = tk.Button(top, text ="Submit", command=Submit, width=10).place(x=470, y=70)
 removebuilding = tk.Button(top, text="Remove Building", command=remove_building, width=14).place(x=290, y=35)
+buildingpic = tk.Button(top, text="BuildingPic", command=buildingpic, width=14).place(x=600, y=35)
 save = tk.Button(top, text="Save", command=saveMap, width=10).place(x=470, y=15)
 edit = tk.Button(top, text="Edit", command=edit_coor, width=10).place(x=470, y=100)
 load = tk.Button(root, text="load", command=loadMap, width=10).place(x=700, y=660)
+addtree = tk.Button(top, text="Add tree", command=Addtree, width=10).place(x=470, y=380)
 
 
 ############################################################################################
@@ -225,5 +277,6 @@ canva.bind('<Button-1>', pressed1)
 canva.bind('<Double 1>', double_click)
 
 
-
 root.mainloop()
+
+

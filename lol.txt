@@ -1,7 +1,0 @@
-  
-
-Building:hola
-BuildingImage:C:/Users/antho/PycharmProjects/Sprint1/tree1.png
-Wall:x1=1, y1=2, x2=3, y2=4, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/backgnd.png 
-Wall:x1=1, y1=2, x2=3, y2=4, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
-Wall:x1=1, y1=2, x2=3, y2=4, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree3.png 

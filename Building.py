@@ -13,9 +13,10 @@ class building:
     def wall(self,x1,y1,x2,y2,height,texture):
         temp= 'Wall:x1=%d, y1=%d, x2=%d, y2=%d, Height=%d, Texture: %s \n'% (x1,y1,x2,y2,height,texture)
         self.wallstr.append(temp)
-        self.wall_num+=1
-        print(self.wall_num)
         print(*self.wallstr)
+    def editwall(self,wallnum,x1,y1,x2,y2,height,texture):
+        print(wallnum)
+        self.wallstr[wallnum-2]='Wall:x1=%d, y1=%d, x2=%d, y2=%d, Height=%d, Texture: %s \n'% (x1,y1,x2,y2,height,texture)
 
     def SaveBuilding(self):
         temp=""
@@ -29,5 +30,5 @@ class building:
     def DeleteBuilding(self):
         self.building_name=""
         self.wallstr=[]
-        self.wall_num=1
+        self.buildingpicture = ""
 

@@ -280,3 +280,157 @@ canva.bind('<Double 1>', double_click)
 root.mainloop()
 
 
+'''
+Nombre: saveMap
+
+Objectivo: Guardar el mapa con un nombre y en formato .txt de forma que se pueda hacer 
+referencia posteriormente al mismo y que pueda leer su contenido con cualquier editor 
+de texto.
+
+Precondiciones: El botón de 'save' fue presionado.
+
+Postcondiciones: Se crea un archivo en formato .txt que contiene la información que
+describe el mapa.
+
+Argumentos: N/A
+
+Autor: Anthony Cuevas
+
+Fecha: 7 de marzo de 2020
+
+###
+
+Nombre: bg_load
+
+Objectivo: Función interna para cargar la imagen de fondo correspondiente al mapa que 
+se pretende cargar.
+
+Precondiciones: Se cargará un mapa.
+
+Postcondiciones: El mapa que se cargará tendrá la imagen de fondo correspondiente.
+
+Argumentos: bg => la ruta del archivo de la imagen de fondo.
+
+Autor: Anthony Cuevas
+
+Fecha: 7 de marzo de 2020
+
+###
+
+Nombre: loadMap
+
+Objectivo: Seleccionar un archivo que contenga un mapa y cargarlo para poder jugar.
+
+Precondiciones: Se presiona el botón de 'load'.
+
+Postcondiciones: Se cargará un mapa para jugar.
+
+Argumentos: N/A
+
+Autor: Anthony Cuevas
+
+Fecha: 7 de marzo de 2020
+
+###
+
+Nombre: draw_theloadmap
+
+Objectivo: Dibujar las líneas en la pantalla que representan las paredes del
+edificio cuando se carga un mapa existente.
+
+Precondiciones: Se cargará un mapa.
+
+Postcondiciones: Se dibuja en pantalla las líneas que representa las paredes.
+
+Argumentos: drawwall => arreglo de paredes, contiene las coordenadas de los
+extremos de las paredes.
+
+Autor: Anthony Cuevas
+
+Fecha: 7 de marzo de 2020
+
+###
+
+Nombre: edit_coor
+
+Objectivo: Editar las coordenadas de los extremos de la pared seleccionada.
+
+Precondiciones: Se selecciona un extremo de una pared.
+
+Postcondiciones: Las coordenadas del extremo de la pared se atualizan.
+
+Argumentos: N/A
+
+Autor: Irving Lazu
+
+Fecha: 30 de marzo de 2020
+
+###
+
+Nombre: remove_building
+
+Objectivo: Eliminar edificios que ya había creado, de forma que pueda hacer 
+modificaciones en los mapas existentes.
+
+Precondiciones: Se presiona botón de 'Remove Building'.
+
+Postcondiciones: El edificio se eliminará del mapa.
+
+Argumentos: N/A
+
+Autor: Irving Lazu
+
+Fecha: 4 de marzo de 2020
+
+###
+
+Nombre: Addtree
+
+Objectivo: Colocar imágenes de árboles en el mapa seleccionando, uno de entre tres tipos de árboles.
+
+Precondiciones: Se presiona botón 'Add Tree'.
+
+Postcondiciones: Se cargará la imagen del árbol correspondiente en el punto seleccionado.
+
+Argumentos: N/A
+
+Autor: Enrique Marrero
+
+Fecha: 30 de marzo de 2020
+
+###
+
+Nombre: choose_bg
+
+Objectivo: Seleccionar una imagen de forma que pueda asignarla como fondo
+para un mapa.
+
+Precondiciones: Se presiona el botón 'Choose Background'.
+
+Postcondiciones: Se cargará la imagen de fondo en el mapa.
+
+Argumentos: N/A
+
+Autor: Jean Merced
+
+Fecha: 4 de marzo de 2020
+
+###
+
+Nombre: double_click
+
+Objectivo: Dibujar las líneas en la pantalla, de forma que pueda establecer las 
+coordenadas para los extremos de las paredes de los edificios.
+
+Precondiciones: Hacer doble clic en la pantalla en los puntos que quiere definir como
+los extremos de la pared.
+
+Postcondiciones: Se dibuja en pantalla una línea que representa una pared.
+
+Argumentos: event => el ratón fue presionado.
+
+Autor: Enrique Marrero
+
+Fecha: 4 de marzo de 2020
+
+'''

@@ -152,10 +152,24 @@ def saveMap():
 
 def bg_load(bg):
     global canva
-    print(bg)
     canva.image = ImageTk.PhotoImage(file=bg)
     canva.create_image(0, 0, image=canva.image, anchor=NW)
     canva.pack()
+
+def edit_load(wall_draw):
+    global canva,backgroundtxt
+    bg=backgroundtxt[11:-1]
+    wall_draw1=[]
+    for line in wall_draw:
+        if line.startswith("Wall:"):
+            print(line[5:])
+            wall = line[5:]
+            wall_draw1.append(wall)
+    if backgroundtxt==" ":
+        pass
+    else:
+        bg_load(bg)
+    draw_theloadmap(wall_draw1)
 
 
 def loadMap():
@@ -205,13 +219,14 @@ def draw_theloadmap(drawwall):
         print(x1,y1,x2,y2)
         canva.create_line(x1,y1,x2,y2, width=3)
 def edit_coor():
-    global wallnum,bu
+    global wallnum,bu,edit_load
     dele=float(wallnum)
     text_widget1.delete(dele-1.0, dele)
     text_widget1.insert(INSERT, 'Wall%d:x1 = % d, y1 = % d , x2 = % d, y2 = % d, Height = % d\n' % (wallnum-1, int(ex1.get()), int(ey1.get()), int(ex2.get()), int(ey2.get()), int(ez.get())))
     tex = Texture()
-    bu.editwall(wallnum, int(ex1.get()), int(ey1.get()), int(ex2.get()), int(ey2.get()), int(ez.get()),tex)
+    re=bu.editwall(wallnum, int(ex1.get()), int(ey1.get()), int(ex2.get()), int(ey2.get()), int(ez.get()),tex)
     line = canva.create_line(int(ex1.get()), int(ey1.get()), int(ex2.get()), int(ey2.get()), width=3)
+    edit_load(re)
 
 def remove_building():
     global Buildingtxt,eb,backgroundtxt

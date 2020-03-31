@@ -17,6 +17,7 @@ class building:
     def editwall(self,wallnum,x1,y1,x2,y2,height,texture):
         print(wallnum)
         self.wallstr[wallnum-2]='Wall:x1=%d, y1=%d, x2=%d, y2=%d, Height=%d, Texture: %s \n'% (x1,y1,x2,y2,height,texture)
+        return self.wallstr
 
     def SaveBuilding(self):
         temp=""

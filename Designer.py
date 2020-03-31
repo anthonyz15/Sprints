@@ -66,8 +66,8 @@ x2 = tk.Label(top, text="X2").place(x=180, y=70)
 y2 = tk.Label(top, text="Y2").place(x=270, y=70)
 z = tk.Label(top, text="Height").place(x=360, y=70)
 
-tree1 = tk.Label(top, text="X").place(x=270, y=350)
-tree2 = tk.Label(top, text="Y").place(x=360, y=350)
+tree1 = tk.Label(top, text="X").place(x=0, y=250)
+tree2 = tk.Label(top, text="Y").place(x=90, y=250)
 
 
 
@@ -90,8 +90,8 @@ ey1.place(x=110, y=70)
 ex2.place(x=200, y=70)
 ey2.place(x=290, y=70)
 ez.place(x=400, y=70)
-tree1.place(x=290, y=350)
-tree2.place(x=400, y=350)
+tree1.place(x=20, y=250)
+tree2.place(x=110, y=250)
 
 
 
@@ -102,7 +102,7 @@ text_widget1.place(x=15, y=100)
 clicked= StringVar()
 clicked.set("Tree 1")
 drop= OptionMenu(top,clicked,"Tree 1","Tree 2","Tree 3")
-drop.place(x=100, y=350)
+drop.place(x=180, y=245)
 
 ########################################################################################################
 
@@ -266,14 +266,17 @@ def loadtree(treetype,location):
 
 
 #buttons
+
+
+
 building = tk.Button(top, text="Add Building", command=AddBuilding, width=14).place(x=180, y=35)
 submit = tk.Button(top, text ="Submit", command=Submit, width=10).place(x=470, y=70)
 removebuilding = tk.Button(top, text="Remove Building", command=remove_building, width=14).place(x=290, y=35)
-buildingpic = tk.Button(top, text="BuildingPic", command=buildingpic, width=14).place(x=600, y=35)
-save = tk.Button(top, text="Save", command=saveMap, width=10).place(x=470, y=15)
+buildingpic = tk.Button(top, text="BuildingPic", command=buildingpic, width=14).place(x=400, y=35)
+save = tk.Button(top, text="Save Map", command=saveMap, width=10).place(x=600, y=320)
 edit = tk.Button(top, text="Edit last wall", command=edit_coor, width=10).place(x=560, y=70)
 load = tk.Button(root, text="load", command=loadMap, width=10).place(x=700, y=660)
-addtree = tk.Button(top, text="Add tree", command=Addtree, width=10).place(x=470, y=380)
+addtree = tk.Button(top, text="Add tree", command=Addtree, width=10).place(x=260, y=245)
 
 
 ############################################################################################

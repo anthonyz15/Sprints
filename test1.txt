@@ -1,0 +1,19 @@
+Background:C:/Users/antho/PycharmProjects/Sprint1/backgnd.png
+ 
+
+Building:portico
+BuildingImage:C:/Users/antho/PycharmProjects/Sprint1/portico.png
+Wall:x1=147, y1=103, x2=129, y2=174, Height=5, Texture:  
+Wall:x1=129, y1=175, x2=193, y2=197, Height=5, Texture:  
+Wall:x1=193, y1=197, x2=217, y2=127, Height=5, Texture:  
+Wall:x1=217, y1=127, x2=148, y2=106, Height=5, Texture:  
+Building:stefani
+BuildingImage:C:/Users/antho/PycharmProjects/Sprint1/portico.png
+Wall:x1=686, y1=178, x2=717, y2=331, Height=5, Texture:  
+Wall:x1=717, y1=331, x2=919, y2=293, Height=5, Texture:  
+Wall:x1=919, y1=293, x2=868, y2=155, Height=5, Texture:  
+Wall:x1=868, y1=155, x2=690, y2=177, Height=5, Texture:  
+TreeType:Tree 1, location(100,400)
+TreeType:Tree 2, location(400,400)
+TreeType:Tree 3, location(400,100)
+myTriviaFile.txt

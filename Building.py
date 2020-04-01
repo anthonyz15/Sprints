@@ -33,7 +33,6 @@ class building:
         self.wallstr=[]
         self.buildingpicture = ""
 '''
-###
 Nombre: buildingname
 Objectivo: Añadir a un edificio su nombre
 Precondiciones: Presionar el botón de crear edificio en el interfaz de usuario
@@ -41,6 +40,17 @@ Postcondiciones: Se le atribuye el nombre escrito al edificio.
 Argumentos: name => el nombre a proveer
 Autor: Jean Merced
 Fecha: 4 de marzo de 2020
+###
+Nombre: editwall
+Objectivo: Editar una pared de un edificio
+Precondiciones: Se presiona el botón de someter cambios en el interfaz de usuario
+Postcondiciones: Se hacen los cambios necesarios a la pared
+Argumentos: x1,x2 => coordenadas en el plano X
+            y1,y2 => coordenadas en el plano Y
+            height => altura de la pared
+            texture => imágen asociada a la textura de las paredes
+Autor: Enrique Marrero
+Fecha: 28 de marzo de 2020
 ###
 Nombre: wall
 Objetivo:  Añadir una pared a un edificio en específico.

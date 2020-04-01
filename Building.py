@@ -32,4 +32,46 @@ class building:
         self.building_name=""
         self.wallstr=[]
         self.buildingpicture = ""
-
+'''
+###
+Nombre: buildingname
+Objectivo: Añadir a un edificio su nombre
+Precondiciones: Presionar el botón de crear edificio en el interfaz de usuario
+Postcondiciones: Se le atribuye el nombre escrito al edificio.
+Argumentos: name => el nombre a proveer
+Autor: Jean Merced
+Fecha: 4 de marzo de 2020
+###
+Nombre: wall
+Objetivo:  Añadir una pared a un edificio en específico.
+Precondiciones: Dibujar la pared en el interfaz de usuario
+Postcondiciones: Se le añade la pared al edificio
+Argumentos: x1,x2 => coordenadas en el plano X
+            y1,y2 => coordenadas en el plano Y
+            height => altura de la pared
+            texture => imágen asociada a la textura de las paredes
+Autor: Enrique Marrero
+Fecha: 4 de marzo de 2020
+###
+Nombre: SaveBuilding
+Objectivo: Guardar los atributos del edificio a un archivo
+Precondiciones: Presionar el botón de guardar edificio en el interfaz de usuario
+Postcondiciones: Se escriben los atributos adjuntos a un edificio
+Autor: Jean Merced
+Fecha: 4 de marzo de 2020
+###
+Nombre: buildingpic
+Objectivo: Añadir una imagen al edificio
+Precondiciones: Presionar el botón de añadir imagen en el interfaz de usuario
+Postcondiciones: Se le atribuye la imagen al edificio.
+Argumentos: file => el archivo de la imagen
+Autor: Irving Lazu
+Fecha: 4 de marzo de 2020
+###
+Nombre: DeleteBuilding
+Objectivo: Elimina un edificio
+Precondiciones: Presionar el botón de eliminar edificio en el interfaz de usuario
+Postcondiciones: Se elimina el edificio, borrando los atributos que éste contiene
+Autor: Anthony Cuevas
+Fecha: 4 de marzo de 2020
+'''

@@ -346,6 +346,38 @@ root.mainloop()
 
 
 '''
+Nombre: AddBuilding
+Objectivo: Crea un edificio en blanco
+Precondiciones: Presionar el botón de crear edificio en el interfaz de usuario
+Postcondiciones: Se crea el edificio
+Argumentos: N/A
+Autor: Jean Merced
+Fecha: 5 de marzo de 2020
+###
+Nombre: buildingpic
+Objectivo: Atribuir una foto a un edificio
+Precondiciones: Presionar el botón de añadir foto a un edificio en el interfaz de usuario
+Postcondiciones: Se le atribuye la imagen correspondiente al edificio.
+Argumentos: N/A
+Autor: Enrique Marrero
+Fecha: 4 de marzo de 2020
+###
+Nombre: RemoveBuilding
+Objectivo: Remueve un edificio del mapa
+Precondiciones: Presionar el botón de remover edificio en el interfaz de usuario
+Postcondiciones: Se remueve completamente un edificio del mapa, y sus atributos
+Argumentos: N/A
+Autor: Anthony Cuevas
+Fecha: 6 de marzo de 2020
+###
+Nombre: Texture
+Objectivo: Añadir una textura a un edificio
+Precondiciones: Presionar el botón de añadir una textura a un edificio en el interfaz de usuario
+Postcondiciones: Se le atribuye una textura seleccionada al edificio.
+Argumentos: N/A
+Autor: Irving Lazu
+Fecha: 3 de marzo de 2020
+###
 Nombre: saveMap
 Objectivo: Guardar el mapa con un nombre y en formato .txt de forma que se pueda hacer 
 referencia posteriormente al mismo y que pueda leer su contenido con cualquier editor 

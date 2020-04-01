@@ -367,15 +367,15 @@ Objectivo: Remueve un edificio del mapa
 Precondiciones: Presionar el botón de remover edificio en el interfaz de usuario
 Postcondiciones: Se remueve completamente un edificio del mapa, y sus atributos
 Argumentos: N/A
-Autor: Anthony Cuevas
-Fecha: 6 de marzo de 2020
+Autor: Irving Lazu
+Fecha: 28 de marzo de 2020
 ###
 Nombre: Texture
 Objectivo: Añadir una textura a un edificio
 Precondiciones: Presionar el botón de añadir una textura a un edificio en el interfaz de usuario
 Postcondiciones: Se le atribuye una textura seleccionada al edificio.
 Argumentos: N/A
-Autor: Irving Lazu
+Autor: Enrique Marrero
 Fecha: 3 de marzo de 2020
 ###
 Nombre: saveMap

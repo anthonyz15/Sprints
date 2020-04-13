@@ -9,6 +9,7 @@ backgroundtxt=" "
 Buildingtxt=" "
 texture=" "
 tree=""
+questions=""
 questionfile="myTriviaFile.txt"
 
 
@@ -55,7 +56,7 @@ t3 = ImageTk.PhotoImage(t3)
 
 top = Toplevel()#lib kinter
 top.title("Map functions")
-top.geometry("700x400")  # Width x Height
+top.geometry("700x600")  # Width x Height
 
 
 # XandY entry
@@ -68,6 +69,7 @@ z = tk.Label(top, text="Height").place(x=360, y=70)
 
 tree1 = tk.Label(top, text="X").place(x=0, y=250)
 tree2 = tk.Label(top, text="Y").place(x=90, y=250)
+question = tk.Label(top, text="Add Question (Insert the question and then insert the four selections, the first selection you insert is the correct one)").place(x=0, y=280)
 
 
 
@@ -79,7 +81,8 @@ ey2 = tk.Entry(top, width=10)
 ez = tk.Entry(top, width=10)
 tree1 = tk.Entry(top, width=10)
 tree2 = tk.Entry(top, width=10)
-
+text_widgetQ = tk.Text(top, width=80, height=10)
+text_widgetQ.place(x=15, y=310)
 
 
 
@@ -95,6 +98,7 @@ tree2.place(x=110, y=250)
 
 
 
+
 text_widget1 = tk.Text(top, width=80, height=8)
 text_widget1.place(x=15, y=100)
 
@@ -107,8 +111,9 @@ drop.place(x=180, y=245)
 ########################################################################################################
 
 def AddBuilding():
-    global Buildingtxt,text_widget1,eb,bu,building
+    global Buildingtxt,text_widget1,eb,bu,building,questions
     Buildingtxt+=bu.SaveBuilding()
+    questions += bu.QuestionBuilding()
     bu.DeleteBuilding()
     #temp="Building:  "
     #Buildingclass = "%s%s\n" % (temp,str(eb.get()))
@@ -140,12 +145,18 @@ def Texture():
 
 
 def saveMap():
-    global backgroundtxt,Buildingtxt,tree,questionfile
+    global backgroundtxt,Buildingtxt,tree,questionfile,questions
     Buildingtxt+=bu.SaveBuilding()
-    f = filedialog.asksaveasfile(mode='w', defaultextension=".txt")
+    questions += bu.QuestionBuilding()
+    Q = filedialog.asksaveasfile(mode='w',title="Save the Question File", defaultextension=".txt")
+    if Q is None:  # asksaveasfile return `None` if dialog closed with "cancel".
+        return
+    f = filedialog.asksaveasfile(mode='w',title="Save the Map", defaultextension=".txt")
     if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
         return
     textToSave=backgroundtxt+Buildingtxt+tree+questionfile
+    Q.write(questions)
+    Q.close()
     f.write(textToSave)
     f.close()
 
@@ -263,6 +274,12 @@ def Addtree():
     if clicked.get() == "Tree 3":
         canva.create_image(x, y, image=t3,anchor='nw')
         canva.pack()
+
+def AddQuestion():
+    global text_widgetQ,Buildingtxt,bu
+    input = text_widgetQ.get("1.0", END)
+    bu.question(input)
+
 def loadtree(treetype,location):
     global tree,tree1,tree2,canva,root
     locat=location.split(",")
@@ -288,10 +305,11 @@ building = tk.Button(top, text="Add Building", command=AddBuilding, width=14).pl
 submit = tk.Button(top, text ="Submit", command=Submit, width=10).place(x=470, y=70)
 removebuilding = tk.Button(top, text="Remove Building", command=remove_building, width=14).place(x=290, y=35)
 buildingpic = tk.Button(top, text="BuildingPic", command=buildingpic, width=14).place(x=400, y=35)
-save = tk.Button(top, text="Save Map", command=saveMap, width=10).place(x=600, y=320)
+save = tk.Button(top, text="Save Map", command=saveMap, width=10).place(x=600, y=560)
 edit = tk.Button(top, text="Edit last wall", command=edit_coor, width=10).place(x=560, y=70)
 load = tk.Button(root, text="load", command=loadMap, width=10).place(x=700, y=660)
 addtree = tk.Button(top, text="Add tree", command=Addtree, width=10).place(x=260, y=245)
+addquestion = tk.Button(top, text="Add Question", command=AddQuestion, width=10).place(x=580, y=480)
 
 
 ############################################################################################
@@ -346,6 +364,38 @@ root.mainloop()
 
 
 '''
+Nombre: AddBuilding
+Objectivo: Crea un edificio en blanco
+Precondiciones: Presionar el botón de crear edificio en el interfaz de usuario
+Postcondiciones: Se crea el edificio
+Argumentos: N/A
+Autor: Jean Merced
+Fecha: 5 de marzo de 2020
+###
+Nombre: buildingpic
+Objectivo: Atribuir una foto a un edificio
+Precondiciones: Presionar el botón de añadir foto a un edificio en el interfaz de usuario
+Postcondiciones: Se le atribuye la imagen correspondiente al edificio.
+Argumentos: N/A
+Autor: Enrique Marrero
+Fecha: 4 de marzo de 2020
+###
+Nombre: RemoveBuilding
+Objectivo: Remueve un edificio del mapa
+Precondiciones: Presionar el botón de remover edificio en el interfaz de usuario
+Postcondiciones: Se remueve completamente un edificio del mapa, y sus atributos
+Argumentos: N/A
+Autor: Irving Lazu
+Fecha: 28 de marzo de 2020
+###
+Nombre: Texture
+Objectivo: Añadir una textura a un edificio
+Precondiciones: Presionar el botón de añadir una textura a un edificio en el interfaz de usuario
+Postcondiciones: Se le atribuye una textura seleccionada al edificio.
+Argumentos: N/A
+Autor: Enrique Marrero
+Fecha: 3 de marzo de 2020
+###
 Nombre: saveMap
 Objectivo: Guardar el mapa con un nombre y en formato .txt de forma que se pueda hacer 
 referencia posteriormente al mismo y que pueda leer su contenido con cualquier editor 

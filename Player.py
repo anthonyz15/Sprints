@@ -8,6 +8,7 @@ import time
 Buildinglist={}
 data=[]
 hitbox=[]
+BuildingRemaining=None
 
 xbox=[]
 ybox=[]
@@ -43,11 +44,14 @@ t3 = Image.open("tree3.png")
 t3 = t3.resize((100, 100), Image.ANTIALIAS)
 t3 = ImageTk.PhotoImage(t3)
 
+Remaining = tk.Label(root, text="Building Remaining").place(x=30, y=660)
 
+text_widget = tk.Text(root, width=10,height=1)
+text_widget.place(x=150, y=660)
 
 
 def loadMap():
-    global canva,bg_load,draw_theloadmap,Buildinglist,player,loadtree
+    global canva,bg_load,draw_theloadmap,Buildinglist,player,loadtree,BuildingRemaining,text_widget
     trees = []
     locat = []
     file_path = filedialog.askopenfilename()
@@ -71,8 +75,9 @@ def loadMap():
     for i in range(len(trees)):
         loadtree(trees[i],locat[i])
     player = canva.create_image(100,100,image=player1,anchor='sw')
-    canva.move(player, 150, 550)
-
+    canva.move(player, 10, 520)
+    BuildingRemaining=len(Buildinglist)
+    text_widget.insert(INSERT, '%d\n' % (BuildingRemaining))
 def loadtree(treetype,location):
     global tree1,tree2,canva,root
     locat=location.split(",")
@@ -153,13 +158,17 @@ def bg_load(bg):
     canva.pack()
 
 def bpic_load(bpic):
-    global canva,bpicture,back
+    global canva,bpicture,back,BuildingRemaining
     bpicture = Image.open(bpic)
     bpicture.resize((10, 10))
     bpicture = ImageTk.PhotoImage(bpicture)
     back=canva.create_image(0,0, image=bpicture, anchor=NW)
     canva.move(back, 60, 20)
     canva.pack()
+    BuildingRemaining-=1
+    text_widget.delete("1.0", END)
+    text_widget.insert(INSERT, '%d\n' % (BuildingRemaining))
+
 
 def questions(question):
     global submit,clicked,Buildinglist,bpic

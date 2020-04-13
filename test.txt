@@ -1,11 +1,19 @@
 Background:C:/Users/antho/PycharmProjects/Sprint1/backgnd.png
  
-Building:help
-Wall:x1=320, y1=129, x2=246, y2=309, Height=5, Texture:  
-Wall:x1=246, y1=309, x2=408, y2=310, Height=5, Texture:  
-Wall:x1=408, y1=310, x2=320, y2=128, Height=5, Texture:  
-Building:cuadrado
-Wall:x1=643, y1=156, x2=650, y2=300, Height=5, Texture:  
-Wall:x1=650, y1=300, x2=859, y2=277, Height=5, Texture:  
-Wall:x1=859, y1=277, x2=835, y2=154, Height=5, Texture:  
-Wall:x1=835, y1=154, x2=641, y2=155, Height=5, Texture:  
+
+Building:portico
+BuildingImage:C:/Users/antho/PycharmProjects/Sprint1/tree2.png
+Wall:x1=155, y1=104, x2=155, y2=145, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Wall:x1=155, y1=103, x2=176, y2=85, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Wall:x1=177, y1=82, x2=223, y2=105, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Wall:x1=221, y1=109, x2=221, y2=152, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Building:stefani
+
+Wall:x1=400, y1=100, x2=400, y2=200, Height=8, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Wall:x1=402, y1=101, x2=482, y2=101, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Wall:x1=479, y1=99, x2=479, y2=195, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+Wall:x1=478, y1=193, x2=399, y2=195, Height=5, Texture: C:/Users/antho/PycharmProjects/Sprint1/tree2.png 
+TreeType:Tree 1, location(100,400)
+TreeType:Tree 2, location(300,400)
+TreeType:Tree 3, location(600,400)
+myTriviaFile.txt

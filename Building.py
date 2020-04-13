@@ -54,17 +54,6 @@ Argumentos: name => el nombre a proveer
 Autor: Jean Merced
 Fecha: 4 de marzo de 2020
 ###
-Nombre: editwall
-Objectivo: Editar una pared de un edificio
-Precondiciones: Se presiona el botón de someter cambios en el interfaz de usuario
-Postcondiciones: Se hacen los cambios necesarios a la pared
-Argumentos: x1,x2 => coordenadas en el plano X
-            y1,y2 => coordenadas en el plano Y
-            height => altura de la pared
-            texture => imágen asociada a la textura de las paredes
-Autor: Enrique Marrero
-Fecha: 28 de marzo de 2020
-###
 Nombre: wall
 Objetivo:  Añadir una pared a un edificio en específico.
 Precondiciones: Dibujar la pared en el interfaz de usuario
@@ -76,12 +65,40 @@ Argumentos: x1,x2 => coordenadas en el plano X
 Autor: Jean Merced
 Fecha: 4 de marzo de 2020
 ###
+Nombre: editwall
+Objectivo: Editar una pared de un edificio
+Precondiciones: Se presiona el botón de someter cambios en el interfaz de usuario
+Postcondiciones: Se hacen los cambios necesarios a la pared
+Argumentos: x1,x2 => coordenadas en el plano X
+            y1,y2 => coordenadas en el plano Y
+            height => altura de la pared
+            texture => imágen asociada a la textura de las paredes
+Autor: Enrique Marrero
+Fecha: 28 de marzo de 2020
+###
+Nombre: Question
+Objetivo: Añadir una pregunta a la lista de preguntas del edificio
+Precondiciones: Presionar el botón de añadir una pregunta
+Postcondiciones: Se añade una pregunta a la lista de preguntas del edificio
+Argumentos: question => una lista que contiene la pregunta, contestación correcta
+                        y tres contestaciones incorrectas
+Autor: Enrique Marrero
+Fecha: 9 de abril de 2020
+###
 Nombre: SaveBuilding
 Objectivo: Guardar los atributos del edificio a un archivo
 Precondiciones: Presionar el botón de guardar edificio en el interfaz de usuario
 Postcondiciones: Se escriben los atributos adjuntos a un edificio
 Autor: Anthony Cuevas
 Fecha: 4 de marzo de 2020
+###
+Nombre: QuestionBuilding
+Objetivo: Proveer el nombre del edificio con la lista de preguntas
+Precondiciones: Se desea archivar información sobre el edificio
+Postcondiciones: Se coloca el nombre del edificio, luego pregunta y finalmente 
+                 resupuestas. Cada cosa en una línea aparte
+Autor: Irving Lazu
+Fecha: 10 de abril de 2020
 ###
 Nombre: buildingpic
 Objectivo: Añadir una imagen al edificio

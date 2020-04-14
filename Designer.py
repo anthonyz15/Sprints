@@ -459,6 +459,14 @@ Argumentos: N/A
 Autor: Enrique Marrero
 Fecha: 30 de marzo de 2020
 ###
+Nombre: AddQuestion
+Objectivo: Añadir preguntas a un edificio.
+Precondiciones: Se presiona el botón 'Add Question'
+Postcondiciones: Se añadirá la pregunta escrita al edificio que se está editando.
+Argumentos: N/A
+Autor: Anthony Cuevas
+Fecha: 11 de abril de 2020
+###
 Nombre: choose_bg
 Objectivo: Seleccionar una imagen de forma que pueda asignarla como fondo
 para un mapa.

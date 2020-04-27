@@ -2,8 +2,10 @@ import threading
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk,Image
 import time
+import random
 
 Buildinglist={}
 data=[]
@@ -12,12 +14,25 @@ BuildingRemaining=None
 
 xbox=[]
 ybox=[]
+xcen=[None] * 5
+ycen=[None] * 5
 
-global player,player1,t1,t2,t3,clicked,bpicture,bpic,back
+global player,questionfile,player1,t1,t2,t3,clicked1,clicked2,clicked3,clicked4,bpicture,bpic,back,top,repeat,correct1,correct2,correct3,correct4
 
+picnum=0
 
+playerleft=[None]*3
+selectplayerleft=0
+playerright=[None]*3
+selectplayerright=0
+playerdown=[None]*3
+selectplayerdown=0
+playerup=[None]*3
+selectplayerup=0
+repeat=[]
+toplevel=False
 
-
+img=[None]*10
 root = tk.Tk()  # lib kinter
 
 root.title("Game")
@@ -28,9 +43,6 @@ canva.config(bg="grey")
 canva.pack()
 root.update()
 
-player1 = Image.open("Player.png")
-player1 = player1.resize((75, 75), Image.ANTIALIAS)
-player1 = ImageTk.PhotoImage(player1)
 
 t1 = Image.open("tree1.png")
 t1 = t1.resize((100, 100), Image.ANTIALIAS)
@@ -48,12 +60,73 @@ Remaining = tk.Label(root, text="Building Remaining").place(x=30, y=660)
 
 text_widget = tk.Text(root, width=10,height=1)
 text_widget.place(x=150, y=660)
+clicked= StringVar()
+clicked.set("Player 1")
+drop= OptionMenu(root,clicked,"Player 1","Player 2","Player 3")
+drop.place(x=450, y=655)
 
+
+def playersel(p):
+    global  player1,playerleft,playerright,playerup,playerdown,player
+    player1 = Image.open("sprites/"+p+"027.png")
+    player1 = player1.resize((75, 75), Image.ANTIALIAS)
+    player1 = ImageTk.PhotoImage(player1)
+    player = canva.create_image(100, 100, image=player1, anchor='sw')
+    canva.move(player, 10, 520)
+
+    playerleft[0] = Image.open("sprites/"+p+"010.png")
+    playerleft[0] = playerleft[0].resize((75, 75), Image.ANTIALIAS)
+    playerleft[0] = ImageTk.PhotoImage(playerleft[0])
+
+    playerleft[1] = Image.open("sprites/"+p+"009.png")
+    playerleft[1] = playerleft[1].resize((75, 75), Image.ANTIALIAS)
+    playerleft[1] = ImageTk.PhotoImage(playerleft[1])
+
+    playerleft[2] = Image.open("sprites/"+p+"011.png")
+    playerleft[2] = playerleft[2].resize((75, 75), Image.ANTIALIAS)
+    playerleft[2] = ImageTk.PhotoImage(playerleft[2])
+
+    playerright[0] = Image.open("sprites/"+p+"028.png")
+    playerright[0] = playerright[0].resize((75, 75), Image.ANTIALIAS)
+    playerright[0] = ImageTk.PhotoImage(playerright[0])
+
+    playerright[1] = Image.open("sprites/"+p+"027.png")
+    playerright[1] = playerright[1].resize((75, 75), Image.ANTIALIAS)
+    playerright[1] = ImageTk.PhotoImage(playerright[1])
+
+    playerright[2] = Image.open("sprites/"+p+"029.png")
+    playerright[2] = playerright[2].resize((75, 75), Image.ANTIALIAS)
+    playerright[2] = ImageTk.PhotoImage(playerright[2])
+
+    playerdown[0] = Image.open("sprites/"+p+"018.png")
+    playerdown[0] = playerdown[0].resize((75, 75), Image.ANTIALIAS)
+    playerdown[0] = ImageTk.PhotoImage(playerdown[0])
+
+    playerdown[1] = Image.open("sprites/"+p+"020.png")
+    playerdown[1] = playerdown[1].resize((75, 75), Image.ANTIALIAS)
+    playerdown[1] = ImageTk.PhotoImage(playerdown[1])
+
+    playerdown[2] = Image.open("sprites/"+p+"024.png")
+    playerdown[2] = playerdown[2].resize((75, 75), Image.ANTIALIAS)
+    playerdown[2] = ImageTk.PhotoImage(playerdown[2])
+
+    playerup[0] = Image.open("sprites/"+p+"000.png")
+    playerup[0] = playerup[0].resize((75, 75), Image.ANTIALIAS)
+    playerup[0] = ImageTk.PhotoImage(playerup[0])
+
+    playerup[1] = Image.open("sprites/"+p+"002.png")
+    playerup[1] = playerup[1].resize((75, 75), Image.ANTIALIAS)
+    playerup[1] = ImageTk.PhotoImage(playerup[1])
+
+    playerup[2] = Image.open("sprites/"+p+"006.png")
+    playerup[2] = playerup[2].resize((75, 75), Image.ANTIALIAS)
+    playerup[2] = ImageTk.PhotoImage(playerup[2])
 
 def loadMap():
-    global canva,bg_load,draw_theloadmap,Buildinglist,player,loadtree,BuildingRemaining,text_widget
+    global canva,bg_load,draw_theloadmap,Buildinglist,player,loadtree,BuildingRemaining,text_widget,questionfile
     trees = []
     locat = []
+    bg=" "
     file_path = filedialog.askopenfilename()
     with open(file_path, "r") as ifile:
         for line in ifile:
@@ -67,15 +140,18 @@ def loadMap():
                 print(treetype,location)
                 trees.append(treetype)
                 locat.append(location)
+            if line.startswith("QuestionsFile:"):
+                questionfile=line[14:]
         data=open(file_path, "r").read()
         data=data.split("Building:")
         data.pop(0)
         Buildinglist=data
-    bg_load(bg)
+    if bg == " ":
+        pass
+    else:
+        bg_load(bg)
     for i in range(len(trees)):
         loadtree(trees[i],locat[i])
-    player = canva.create_image(100,100,image=player1,anchor='sw')
-    canva.move(player, 10, 520)
     BuildingRemaining=len(Buildinglist)
     text_widget.insert(INSERT, '%d\n' % (BuildingRemaining))
 def loadtree(treetype,location):
@@ -152,71 +228,193 @@ def Building_cut(building):
     return wall_draw
 
 def bg_load(bg):
-    global canva
-    canva.image = ImageTk.PhotoImage(file=bg)
-    canva.create_image(0,0, image=canva.image, anchor=NW)
+    global canva,img
+    img[0] = Image.open(bg)
+    img[0] = img[0].resize((1024, 700), Image.ANTIALIAS)
+    img[0] = ImageTk.PhotoImage(img[0])
+    back=canva.create_image(0, 0, image=img[0], anchor=NW)
+    canva.tag_lower(back)
     canva.pack()
 
 def bpic_load(bpic):
-    global canva,bpicture,back,BuildingRemaining
-    bpicture = Image.open(bpic)
-    bpicture.resize((10, 10))
-    bpicture = ImageTk.PhotoImage(bpicture)
-    back=canva.create_image(0,0, image=bpicture, anchor=NW)
-    canva.move(back, 60, 20)
+    global canva,bpicture,back,BuildingRemaining,xcen,ycen,picnum
+    xCenter = (float(xcen[0]) + float(xcen[1])) / 2.0
+    yCenter = (float(ycen[0]) + float(ycen[1])) / 2.0
+    print(xCenter,yCenter)
+    print(len(bpicture))
+    bpicture[picnum] = Image.open(bpic)
+    bpicture[picnum] = bpicture[picnum].resize((100, 100))
+    bpicture[picnum] = ImageTk.PhotoImage(bpicture[picnum])
+    back=canva.create_image(xCenter,yCenter, image=bpicture[picnum], anchor=NW)
+    canva.move(back,-50,-50)
     canva.pack()
     BuildingRemaining-=1
+    picnum+=1
     text_widget.delete("1.0", END)
     text_widget.insert(INSERT, '%d\n' % (BuildingRemaining))
 
 
 def questions(question):
-    global submit,clicked,Buildinglist,bpic
-    data = open("myTriviaFile.txt", "r").read()
+    global submit,clicked1,clicked2,clicked3,clicked4,Buildinglist,bpic,top,random,correct1,correct2,correct3,correct4
+    data = open(questionfile, "r").read()
     data = data.split("Building:")
     data.pop(0)
+    que=[]
     q=""
     r=""
     w=[]
     bpic=Buildinglist[question].split('\n')
-    data=data[question].split('\n')
+    data=data[question].split('Question')
+    data.pop(0)
+    print(data)
     for line in bpic:
         if line.startswith("BuildingImage:"):
             bpic = line[14:]
             print(bpic)
-    for line in data:
-        if line.startswith("Question:"):
-            print(line[9:])
-            q = line[9:]
-        if line.startswith("Right:"):
-            r=line[6:]
-            print(line[6:])
-        if line.startswith("Wrong:"):
-            w.append(line[6:])
-            print(line[6:])
+    for qu in data:
+        d = qu.split('\n')
+        for line in d:
+            if line.startswith(":"):
+                print(line[1:])
+                q = line[1:]
+            if line.startswith("Right:"):
+                r=line
+                print(r)
+            if line.startswith("Wrong:"):
+                w.append(line)
+                print(w)
+        temp=q+'\n'+r+'\n'+w[0]+'\n'+w[1]+'\n'+w[2]+'\n'
+        #w=[]
+        que.append(temp)
+        print(temp)
     top = Toplevel()  # lib kinter
     top.title("Pregunta")
-    top.geometry("450x200")
+    top.geometry("600x650")
     text_widget1 = tk.Text(top, width=50, height=7)
-    text_widget1.place(x=15, y=15)
-    text_widget1.insert(INSERT,"Question:%s \n 1:%s \n 2:%s \n 3:%s \n 4:%s" % (q,r,w[0],w[1],w[2]))
-    clicked = StringVar()
-    clicked.set("Option 1")
-    drop = OptionMenu(top, clicked, "Option 1", "Option 2", "Option 3", "Option 4")
-    drop.place(x=15, y=150)
-    submit= tk.Button(top, text="Submit", command=submit, width=10).place(x=115, y=150)
+    text_widget1.place(x=15, y=50)
+    text_widget2 = tk.Text(top, width=50, height=7)
+    text_widget2.place(x=15, y=200)
+    text_widget3 = tk.Text(top, width=50, height=7)
+    text_widget3.place(x=15, y=350)
+    text_widget4 = tk.Text(top, width=50, height=7)
+    text_widget4.place(x=15, y=500)
+
+    q1=random.choice(que)
+    q1=q1.split('\n')
+    q2=random.choice(que)
+    q2 = q2.split('\n')
+    q3=random.choice(que)
+    q3 = q3.split('\n')
+    q4=random.choice(que)
+    q4 = q4.split('\n')
+    ## listas para que sea random##
+
+    list1 = []
+    while len(list1)!=4:
+        r = random.randint(1, 4)
+        if r not in list1: list1.append(r)
+    for i in list1:
+        if i==1: correct1=list1.index(i)+1
+
+    list2 = []
+    while len(list2) != 4:
+        r = random.randint(1, 4)
+        if r not in list2: list2.append(r)
+    for i in list2:
+        if i == 1: correct2 = list2.index(i) + 1
+
+    list3 = []
+    while len(list3) != 4:
+        r = random.randint(1, 4)
+        if r not in list3: list3.append(r)
+    for i in list3:
+        if i == 1: correct3 = list3.index(i) + 1
+
+    list4 = []
+    while len(list4) != 4:
+        r = random.randint(1, 4)
+        if r not in list4: list4.append(r)
+    for i in list4:
+        if i == 1: correct4 = list4.index(i) + 1
+    ########################################################
+
+    text_widget1.insert(INSERT,"Question:%s \n 1:%s \n 2:%s \n 3:%s \n 4:%s" % (q1[0],q1[list1[0]][6:],q1[list1[1]][6:],q1[list1[2]][6:],q1[list1[3]][6:]))
+    text_widget2.insert(INSERT, "Question:%s \n 1:%s \n 2:%s \n 3:%s \n 4:%s" % (q2[0],q2[list2[0]][6:],q2[list2[1]][6:],q2[list2[2]][6:],q2[list2[3]][6:]))
+    text_widget3.insert(INSERT, "Question:%s \n 1:%s \n 2:%s \n 3:%s \n 4:%s" % (q3[0],q3[list3[0]][6:],q3[list3[1]][6:],q3[list3[2]][6:],q3[list3[3]][6:]))
+    text_widget4.insert(INSERT, "Question:%s \n 1:%s \n 2:%s \n 3:%s \n 4:%s" % (q4[0],q4[list4[0]][6:],q4[list4[1]][6:],q4[list4[2]][6:],q4[list4[3]][6:]))
+
+    clicked1 = StringVar()
+    clicked1.set("Option 1")
+    drop1 = OptionMenu(top, clicked1, "Option 1", "Option 2", "Option 3", "Option 4")
+    drop1.place(x=460, y=60)
+
+    clicked2 = StringVar()
+    clicked2.set("Option 1")
+    drop2 = OptionMenu(top, clicked2, "Option 1", "Option 2", "Option 3", "Option 4")
+    drop2.place(x=460, y=210)
+
+    clicked3 = StringVar()
+    clicked3.set("Option 1")
+    drop3 = OptionMenu(top, clicked3, "Option 1", "Option 2", "Option 3", "Option 4")
+    drop3.place(x=460, y=360)
+
+    clicked4 = StringVar()
+    clicked4.set("Option 1")
+    drop4 = OptionMenu(top, clicked4, "Option 1", "Option 2", "Option 3", "Option 4")
+    drop4.place(x=460, y=510)
+
+    time.sleep(1)
+    tk.Button(top, text="Submit", command=submit, width=10).place(x=500, y=610)
+
+def askoption(i):
+    global messagebox
+    rep=False
+    for n in repeat:
+        if n==i:
+            rep=True
+    if rep==True:
+        pass
+    else:
+        repeat.append(i)
+        result=messagebox.askquestion("Answer the quiz?")
+        if result == 'yes':
+            questions(i)
+        elif result == 'no':
+            repeat.pop()
+
 
 def submit():
-    global canva,bpic,bpic_load
-    if clicked.get() == "Option 1":
+    global canva,bpic,bpic_load,top,messagebox
+    print("submit")
+    print(correct1)
+    print(correct2)
+    print(correct3)
+    print(correct4)
+    count=0
+    if clicked1.get() == "Option "+str(correct1):
+        count+=1
+    if clicked2.get() == "Option "+str(correct2):
+        count += 1
+    if clicked3.get() == "Option "+str(correct3):
+        count += 1
+    if clicked4.get() == "Option "+str(correct4):
+        count += 1
+    if count>=3:
         bpic_load(bpic)
+        top.destroy()
     else:
-        print("Wrong Answer")
+        messagebox.showinfo("Wrong anwser")
+        repeat.pop()
 
 def leftkey(event):
-    global canva,player,root,time,starts,end,xbox,ybox,data,draw_theloadmap
+    global canva,player,root,time,starts,end,xbox,ybox,data,draw_theloadmap,xcen,ycen,playerleft,selectplayerleft
     loop=len(xbox)
-    print("left")
+    characterpos = canva.coords(player)
+    canva.delete(player)
+    player = canva.create_image(characterpos[0],characterpos[1],image=playerleft[selectplayerleft],anchor='sw')
+    selectplayerleft+=1
+    if selectplayerleft>2:
+        selectplayerleft=0
     canva.move(player, -5, 0)
     pos=canva.coords(player)
     print(pos)
@@ -227,17 +425,27 @@ def leftkey(event):
         y=ybox[i].split(",")
         if float(x[0])<=pos[0]<=float(x[1]) and (float(y[0])<=pos[1]<=float(y[1])+70):
             canva.move(player, 5, 0)
+            xcen[0] = x[0]
+            ycen[0] = y[0]
+            xcen[1] = x[1]
+            ycen[1] = y[1]
             draw_theloadmap(data[i])
-            questions(i)
+            askoption(i)
     root.update_idletasks()
     root.update()
-    time.sleep(0.01)
+    time.sleep(0.04)
 
 
 def rightkey(event):
-    global canva, player,root,time,xbox,ybox,data,draw_theloadmap
+    global canva, player,root,time,xbox,ybox,data,draw_theloadmap,xcen,ycen,playerright,selectplayerright
     loop = len(xbox)
     print("right")
+    characterpos = canva.coords(player)
+    canva.delete(player)
+    player = canva.create_image(characterpos[0], characterpos[1], image=playerright[selectplayerright], anchor='sw')
+    selectplayerright += 1
+    if selectplayerright > 2:
+        selectplayerright = 0
     canva.move(player, 5, 0)
     pos = canva.coords(player)
     print(pos)
@@ -248,14 +456,24 @@ def rightkey(event):
         y = ybox[i].split(",")
         if float(x[0])-60 <= pos[0] <= float(x[1]) and (float(y[0]) <= pos[1] <= float(y[1])+70):
             canva.move(player, -5, 0)
+            xcen[0] = x[0]
+            ycen[0] = y[0]
+            xcen[1] = x[1]
+            ycen[1] = y[1]
             draw_theloadmap(data[i])
-            questions(i)
+            askoption(i)
     root.update_idletasks()
     root.update()
-    time.sleep(0.01)
+    time.sleep(0.04)
 def upkey(event):
-    global canva, player,root,time,xbox,ybox,data,draw_theloadmap,questions
+    global canva, player,root,time,xbox,ybox,data,draw_theloadmap,questions,xcen,ycen,playerup,selectplayerup,askoption
     loop = len(xbox)
+    characterpos = canva.coords(player)
+    canva.delete(player)
+    player = canva.create_image(characterpos[0], characterpos[1], image=playerup[selectplayerup], anchor='sw')
+    selectplayerup += 1
+    if selectplayerup > 2:
+        selectplayerup = 0
     canva.move(player, 0, -5)
     print("up")
     pos = canva.coords(player)
@@ -268,13 +486,24 @@ def upkey(event):
         if float(x[0])-60 <= pos[0] <= float(x[1]) and (float(y[0]) <= pos[1] <= float(y[1])+70):
             canva.move(player, 0, 5)
             draw_theloadmap(data[i])
-            questions(i)
+            xcen[0] = x[0]
+            ycen[0] = y[0]
+            xcen[1] = x[1]
+            ycen[1] = y[1]
+            askoption(i)
+
     root.update_idletasks()
     root.update()
-    time.sleep(0.01)
+    time.sleep(0.04)
 def downkey(event):
-    global canva, player,root,time,xbox,ybox,data,draw_theloadmap
+    global canva, player,root,time,xbox,ybox,data,draw_theloadmap,xcen,ycen,playerdown,selectplayerdown
     loop = len(xbox)
+    characterpos = canva.coords(player)
+    canva.delete(player)
+    player = canva.create_image(characterpos[0], characterpos[1], image=playerdown[selectplayerdown], anchor='sw')
+    selectplayerdown += 1
+    if selectplayerdown > 2:
+        selectplayerdown = 0
     canva.move(player, 0, 5)
     pos = canva.coords(player)
     print(pos)
@@ -285,18 +514,38 @@ def downkey(event):
         y = ybox[i].split(",")
         if float(x[0])-60 <= pos[0] <= float(x[1]) and (float(y[0]) <= pos[1] <= float(y[1])):
             canva.move(player, 0, -5)
+            xcen[0] = x[0]
+            ycen[0] = y[0]
+            xcen[1] = x[1]
+            ycen[1] = y[1]
             draw_theloadmap(data[i])
-            questions(i)
+            askoption(i)
     root.update_idletasks()
     root.update()
-    time.sleep(0.01)
+    time.sleep(0.04)
     print("down")
+def Selected():
+    global root,clicked,playersel
+    if clicked.get() == "Player 1":
+        playersel("mage")
+    if clicked.get() == "Player 2":
+        playersel("b")
+    if clicked.get() == "Player 3":
+        playersel("tile")
+
+
+
+
 #map load
+playersel("mage")
 loadMap()
 for i in Buildinglist:
      data.append(Building_cut(Buildinglist[Buildinglist.index(i)]))
      min_max(data[Buildinglist.index(i)])
 
+bpicture=[None]*len(data)*4
+
+selectplayer = tk.Button(root, text="Select Player", command=Selected, width=10).place(x=360, y=660)
 
 root.bind('<Left>', leftkey)
 root.bind('<Right>', rightkey)

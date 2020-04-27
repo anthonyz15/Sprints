@@ -3,14 +3,15 @@ from tkinter import filedialog
 from tkinter import *
 from Building import building
 from PIL import ImageTk,Image
+import time as time
+
 
 
 backgroundtxt=" "
 Buildingtxt=" "
 texture=" "
 tree=""
-questions=""
-questionfile="myTriviaFile.txt"
+questions=" "
 
 
 bu=building()
@@ -18,9 +19,11 @@ bu=building()
 global img,t1,t2,t3,wallnum
 
 wallnum=1
-
-
-
+img=[None]*10
+c1=" "
+c2=[]
+old_x1=None
+old_y1=None
 x1=0
 x2=0
 y1=0
@@ -34,7 +37,7 @@ root.title("Designer")
 root.geometry("1024x700")  # Width x Height
 
 canva = tk.Canvas(root, width=1024, height=650)
-canva.config(bg="white")
+canva.config(bg="grey")
 canva.pack()
 label=Label(root,text="Coordinates").place(x=350,y=655)
 text_widget = Text(root,width=20,height=1)
@@ -111,7 +114,7 @@ drop.place(x=180, y=245)
 ########################################################################################################
 
 def AddBuilding():
-    global Buildingtxt,text_widget1,eb,bu,building,questions
+    global Buildingtxt,text_widget1,eb,bu,building,questions,wallnum
     Buildingtxt+=bu.SaveBuilding()
     questions += bu.QuestionBuilding()
     bu.DeleteBuilding()
@@ -119,10 +122,13 @@ def AddBuilding():
     #Buildingclass = "%s%s\n" % (temp,str(eb.get()))
     bu.buildingname(str(eb.get()))
     text_widget1.delete("1.0", END)
+    wallnum =1
 def buildingpic():
     file_path = filedialog.askopenfilename()
-    bu.buildingpic(file_path)
-    return file_path
+    file_path = file_path.split("/")
+    name = file_path[len(file_path) - 1]
+    bu.buildingpic(name)
+    return name
 
 def RemoveBuilding():
     global bu
@@ -140,12 +146,14 @@ def Submit(): #submit
 def Texture():
     global texture
     file_path = filedialog.askopenfilename()
-    return file_path
+    file_path = file_path.split("/")
+    name = file_path[len(file_path) - 1]
+    return name
 
 
 
 def saveMap():
-    global backgroundtxt,Buildingtxt,tree,questionfile,questions
+    global backgroundtxt,Buildingtxt,tree,questions
     Buildingtxt+=bu.SaveBuilding()
     questions += bu.QuestionBuilding()
     Q = filedialog.asksaveasfile(mode='w',title="Save the Question File", defaultextension=".txt")
@@ -154,17 +162,22 @@ def saveMap():
     f = filedialog.asksaveasfile(mode='w',title="Save the Map", defaultextension=".txt")
     if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
         return
-    textToSave=backgroundtxt+Buildingtxt+tree+questionfile
-    Q.write(questions)
-    Q.close()
+    file_path = Q.name.split("/")
+    name = file_path[len(file_path) - 1]
+    textToSave=backgroundtxt+Buildingtxt+tree+"QuestionsFile:"+name
     f.write(textToSave)
     f.close()
+    Q.write(questions)
+    Q.close()
+
 
 
 def bg_load(bg):
-    global canva
-    canva.image = ImageTk.PhotoImage(file=bg)
-    canva.create_image(0, 0, image=canva.image, anchor=NW)
+    global canva,img
+    img[0] = Image.open(bg)
+    img[0] = img[0].resize((1024, 700), Image.ANTIALIAS)
+    img[0] = ImageTk.PhotoImage(img[0])
+    canva.create_image(0, 0, image=img[0], anchor=NW)
     canva.pack()
 
 def edit_load(wall_draw):
@@ -189,6 +202,7 @@ def loadMap():
     wall_draw=[]
     trees=[]
     locat=[]
+    bg=" "
     with open(file_path, "r") as ifile:
         for line in ifile:
             if line.startswith("Background:"):
@@ -212,7 +226,10 @@ def loadMap():
                 print(treetype,location)
                 trees.append(treetype)
                 locat.append(location)
-    bg_load(bg)
+    if bg==" ":
+     pass
+    else:
+        bg_load(bg)
     for i in range(len(trees)):
         loadtree(trees[i],locat[i])
     draw_theloadmap(wall_draw)
@@ -318,17 +335,29 @@ addquestion = tk.Button(top, text="Add Question", command=AddQuestion, width=10)
 def choose_bg():
     global canva,backgroundtxt
     file_path = filedialog.askopenfilename()
-    backgroundtxt="Background:"+ file_path + "\n"
-    canva.image=ImageTk.PhotoImage(file=file_path)
-    canva.create_image(0,0,image=canva.image,anchor=NW)
+    file_path=file_path.split("/")
+    name=file_path[len(file_path)-1]
+    backgroundtxt="Background:"+ name + "\n"
+    print(backgroundtxt)
+    img[0] = Image.open(name)
+    img[0] = img[0].resize((1024, 700), Image.ANTIALIAS)
+    img[0] = ImageTk.PhotoImage(img[0])
+    canva.create_image(0, 0, image=img[0], anchor=NW)
     canva.pack()
 
 
 
-def pressed1(event):
+def motion(event):
     global text_widget
     text_widget.delete('1.0',END)
     text_widget.insert(INSERT, 'x = % d, y = % d ' % (event.x, event.y))
+
+def pressed1(event):
+    global tree1,tree2
+    tree1.delete(0, END)
+    tree1.insert(0,event.x)
+    tree2.delete(0, END)
+    tree2.insert(0, event.y)
 
 
 
@@ -349,6 +378,33 @@ def double_click(event):
         x1=event.x
         y1=event.y
 
+def pressed2(event):
+    global old_x1,old_y1,rep,canva,texture,Buildingtxt,bu,wallnum,backgroundtxt,c1
+    print('draw x = % d, y = % d' % (event.x, event.y))
+
+    if old_x1 and old_y1:
+        canva.delete(c1)
+        canva.pack()
+        c1=canva.create_line(old_x1, old_y1, event.x, event.y, width=3)
+
+    else:
+        old_x1 = event.x
+        old_y1 = event.y
+
+def reset(event):
+    global old_y1,old_x1,c1,c2,wallnum
+    c2=canva.create_line(old_x1, old_y1, event.x, event.y, width=3)
+    text_widget1.insert(INSERT, 'Wall%d:x1 = % d, y1 = % d , x2 = % d, y2 = % d, Height = % d\n' % (wallnum, old_x1, old_y1, event.x, event.y, 5))
+    tex = Texture()
+    bu.wall(old_x1, old_y1, event.x, event.y,5, tex)
+    wallnum += 1
+    old_y1=None
+    old_x1=None
+
+
+
+
+
 
 
 
@@ -356,8 +412,11 @@ B = Button(root, text ="Choose Background", command=choose_bg).place(x=160,y=660
 
 # these lines are binding mouse
 # buttons with the Frame widget
+canva.bind('<Motion>', motion)
 canva.bind('<Button-1>', pressed1)
-canva.bind('<Double 1>', double_click)
+canva.bind('<Double-Button-1>', double_click)
+canva.bind('<B1-Motion>', pressed2)
+canva.bind('<ButtonRelease-1>', reset)
 
 
 root.mainloop()

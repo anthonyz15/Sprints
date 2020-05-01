@@ -1,0 +1,354 @@
+#VRML V2.0 utf8
+NavigationInfo {
+	headlight TRUE
+	avatarSize [0.3 1.6 0.5]
+}
+Viewpoint {
+	position -402 5 270
+	orientation 0 1 0 -1.50
+	description "front"
+}
+Transform {
+	translation 0 0 0
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "map.png"
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 1366 0.1 700
+			}
+		}
+	]
+}
+Transform {
+	translation -434.0 2.5 -235.0
+	rotation 0 1 0 0.6889243882148613
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureA1.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 132.13629327327143 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation -322.0 2.5 -235.5
+	rotation 0 1 0 -0.624246267258764
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureA2.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 145.4269576110289 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 211.0 2.5 -195.5
+	rotation 0 1 0 0.5861975513563606
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "TextureB1.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 153.6522046701576 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 341.5 2.5 -193.0
+	rotation 0 1 0 -0.5776759482655278
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "TextureB2.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 161.14899937635357 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 347.0 2.5 -103.5
+	rotation 0 1 0 0.5934770014141882
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "TextureB3.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 151.99013125857877 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 211.5 2.5 -106.5
+	rotation 0 1 0 -0.5862389369458747
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "TextureB4.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 157.25775020646836 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 102.5 2.5 154.0
+	rotation 0 1 0 0.513057909409039
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureC1.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 81.49233092751734 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 68.0 2.5 225.5
+	rotation 0 1 0 1.571
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureC2.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 103.0 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 132.0 2.5 274.0
+	rotation 0 1 0 -0.0
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureC3.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 126.0 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 195.5 2.5 223.5
+	rotation 0 1 0 -1.560895660206908
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureC4.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 101.00495037373169 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation 165.5 2.5 154.5
+	rotation 0 1 0 -0.6235607321590254
+	children [
+		Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0 0 0
+					emissiveColor 0 0 0
+				}
+				texture ImageTexture {
+					url "textureC5.png "
+				}
+				textureTransform TextureTransform {
+					scale 1 1
+					rotation 0
+				}
+			}
+			geometry Box {
+				size 70.21395872616783 5 0.1
+			}
+		}
+	]
+}
+Transform {
+	translation -297 2 110
+	children [
+		Billboard {
+			children [
+				Shape {
+					appearance Appearance {
+						texture ImageTexture {
+							url "tree1.png"
+						}
+					}
+					geometry Box {
+						size 5 4 0.0001
+					}
+			}
+			]
+		}
+	]
+}
+Transform {
+	translation -54 2 -105
+	children [
+		Billboard {
+			children [
+				Shape {
+					appearance Appearance {
+						texture ImageTexture {
+							url "tree2.png"
+						}
+					}
+					geometry Box {
+						size 5 4 0.0001
+					}
+			}
+			]
+		}
+	]
+}
+Transform {
+	translation 538 2 -269
+	children [
+		Billboard {
+			children [
+				Shape {
+					appearance Appearance {
+						texture ImageTexture {
+							url "tree3.png"
+						}
+					}
+					geometry Box {
+						size 5 4 0.0001
+					}
+			}
+			]
+		}
+	]
+}

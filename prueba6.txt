@@ -1,0 +1,24 @@
+Background:map.png
+ 
+
+Building:A
+BuildingImage:BuildingA.png
+Wall:x1=198, y1=157, x2=300, y2=73, Height=5, Texture: textureA1.png 
+Wall:x1=302, y1=72, x2=420, y2=157, Height=5, Texture: textureA2.png 
+Building:B
+BuildingImage:BuildingB.png
+Wall:x1=830, y1=197, x2=958, y2=112, Height=5, Texture: TextureB1.png 
+Wall:x1=957, y1=113, x2=1092, y2=201, Height=5, Texture: TextureB2.png 
+Wall:x1=1093, y1=204, x2=967, y2=289, Height=5, Texture: TextureB3.png 
+Wall:x1=960, y1=287, x2=829, y2=200, Height=5, Texture: TextureB4.png 
+Building:C
+BuildingImage:BuildingC.png
+Wall:x1=821, y1=484, x2=750, y2=524, Height=5, Texture: textureC1.png 
+Wall:x1=751, y1=524, x2=751, y2=627, Height=5, Texture: textureC2.png 
+Wall:x1=752, y1=624, x2=878, y2=624, Height=5, Texture: textureC3.png 
+Wall:x1=879, y1=624, x2=878, y2=523, Height=5, Texture: textureC4.png 
+Wall:x1=877, y1=525, x2=820, y2=484, Height=5, Texture: textureC5.png 
+TreeType:Tree 1, location(386,460)
+TreeType:Tree 2, location(629,245)
+TreeType:Tree 3, location(1221,81)
+QuestionsFile:preguntas6.txt

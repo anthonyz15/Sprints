@@ -1,0 +1,57 @@
+ 
+Building:A
+Question: Year the Colegio was founded 1
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 2
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 3
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 4
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 5
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 6
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 7
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+Question: Year the Colegio was founded 8
+Right: 1911
+Wrong: 1912
+Wrong: 1492
+Wrong: 1777
+
+
+Building:B
+Question: Name of the building where INEL / ICOM is located
+Right: Stefani
+Wrong: Tesla
+Wrong: Faraday
+Wrong: Ohms
+
+Building:C
+Question: Name of the building where INEL / ICOM is located
+Right: Stefani
+Wrong: Tesla
+Wrong: Faraday
+Wrong: Ohms

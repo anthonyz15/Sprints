@@ -47,3 +47,10 @@ Right: Stefani
 Wrong: Tesla
 Wrong: Faraday
 Wrong: Ohms
+
+Building: buildingC
+Question: Name of the building where INEL / ICOM is located
+Right: Stefani
+Wrong: Tesla
+Wrong: Faraday
+Wrong: Ohms

@@ -6,6 +6,7 @@ from tkinter import messagebox
 from PIL import ImageTk,Image
 import time
 import random
+import webbrowser
 
 Buildinglist={}
 data=[]
@@ -17,7 +18,7 @@ ybox=[]
 xcen=[None] * 5
 ycen=[None] * 5
 
-global player,questionfile,player1,t1,t2,t3,clicked1,clicked2,clicked3,clicked4,bpicture,bpic,back,top,repeat,correct1,correct2,correct3,correct4
+global player,questionfile,player1,t1,t2,t3,clicked1,clicked2,clicked3,clicked4,bpicture,bpic,back,top,repeat,correct1,correct2,correct3,correct4,map3d,vrml
 
 picnum=0
 
@@ -36,9 +37,9 @@ img=[None]*10
 root = tk.Tk()  # lib kinter
 
 root.title("Game")
-root.geometry("1024x700")  # Width x Height
+root.geometry("1366x700")  # Width x Height
 
-canva = tk.Canvas(root, width=1024, height=650)
+canva = tk.Canvas(root, width=1366, height=650)
 canva.config(bg="grey")
 canva.pack()
 root.update()
@@ -123,11 +124,15 @@ def playersel(p):
     playerup[2] = ImageTk.PhotoImage(playerup[2])
 
 def loadMap():
-    global canva,bg_load,draw_theloadmap,Buildinglist,player,loadtree,BuildingRemaining,text_widget,questionfile
+    global canva,bg_load,draw_theloadmap,Buildinglist,player,loadtree,BuildingRemaining,text_widget,questionfile,vrml
     trees = []
     locat = []
     bg=" "
     file_path = filedialog.askopenfilename()
+    vrmlname = file_path.split("/")
+    vrmlname = vrmlname[len(vrmlname) - 1]
+    vrml=vrmlname[:-4]
+    print(vrml)
     with open(file_path, "r") as ifile:
         for line in ifile:
             if line.startswith("Background:"):
@@ -230,14 +235,18 @@ def Building_cut(building):
 def bg_load(bg):
     global canva,img
     img[0] = Image.open(bg)
-    img[0] = img[0].resize((1024, 700), Image.ANTIALIAS)
+    img[0] = img[0].resize((1366, 700), Image.ANTIALIAS)
     img[0] = ImageTk.PhotoImage(img[0])
     back=canva.create_image(0, 0, image=img[0], anchor=NW)
     canva.tag_lower(back)
     canva.pack()
+def Map3D():
+    global webbrowser,vrml
+    print("3D")
+    webbrowser.open(vrml+".wrl")
 
 def bpic_load(bpic):
-    global canva,bpicture,back,BuildingRemaining,xcen,ycen,picnum
+    global canva,bpicture,back,BuildingRemaining,xcen,ycen,picnum,Map3D
     xCenter = (float(xcen[0]) + float(xcen[1])) / 2.0
     yCenter = (float(ycen[0]) + float(ycen[1])) / 2.0
     print(xCenter,yCenter)
@@ -252,6 +261,10 @@ def bpic_load(bpic):
     picnum+=1
     text_widget.delete("1.0", END)
     text_widget.insert(INSERT, '%d\n' % (BuildingRemaining))
+    if BuildingRemaining==0:
+        map3d = tk.Button(root, text="Map in 3D", command=Map3D, width=10).place(x=600, y=660)
+
+
 
 
 def questions(question):
@@ -418,7 +431,7 @@ def leftkey(event):
     canva.move(player, -5, 0)
     pos=canva.coords(player)
     print(pos)
-    if pos[0]<=0:
+    if pos[0]<=-25:
         canva.move(player, 5, 0)
     for i in range(loop):
         x=xbox[i].split(",")
@@ -449,7 +462,7 @@ def rightkey(event):
     canva.move(player, 5, 0)
     pos = canva.coords(player)
     print(pos)
-    if pos[0] >= 950:
+    if pos[0] >= 1310:
         canva.move(player, -5, 0)
     for i in range(loop):
         x = xbox[i].split(",")
@@ -546,6 +559,9 @@ for i in Buildinglist:
 bpicture=[None]*len(data)*4
 
 selectplayer = tk.Button(root, text="Select Player", command=Selected, width=10).place(x=360, y=660)
+
+map3d = tk.Button(root, text="Map in 3D", command=Map3D, width=10).place_forget()
+
 
 root.bind('<Left>', leftkey)
 root.bind('<Right>', rightkey)

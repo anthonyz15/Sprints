@@ -4,6 +4,7 @@ from tkinter import *
 from Building import building
 from PIL import ImageTk,Image
 import time as time
+import map_converter
 
 
 
@@ -34,12 +35,12 @@ z=5
 root = tk.Tk()  # lib kinter
 
 root.title("Designer")
-root.geometry("1024x700")  # Width x Height
+root.geometry("1366x700")  # Width x Height
 
-canva = tk.Canvas(root, width=1024, height=650)
+canva = tk.Canvas(root, width=1366, height=650)
 canva.config(bg="grey")
 canva.pack()
-label=Label(root,text="Coordinates").place(x=350,y=655)
+label=Label(root,text="Coordinates").place(x=520,y=655)
 text_widget = Text(root,width=20,height=1)
 text_widget.pack()
 
@@ -153,7 +154,7 @@ def Texture():
 
 
 def saveMap():
-    global backgroundtxt,Buildingtxt,tree,questions
+    global backgroundtxt,Buildingtxt,tree,questions,map_converter
     Buildingtxt+=bu.SaveBuilding()
     questions += bu.QuestionBuilding()
     Q = filedialog.asksaveasfile(mode='w',title="Save the Question File", defaultextension=".txt")
@@ -162,6 +163,8 @@ def saveMap():
     f = filedialog.asksaveasfile(mode='w',title="Save the Map", defaultextension=".txt")
     if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
         return
+    vrmlname=f.name.split("/")
+    vrmlname = vrmlname[len(vrmlname) - 1]
     file_path = Q.name.split("/")
     name = file_path[len(file_path) - 1]
     textToSave=backgroundtxt+Buildingtxt+tree+"QuestionsFile:"+name
@@ -169,13 +172,14 @@ def saveMap():
     f.close()
     Q.write(questions)
     Q.close()
+    map_converter.map_converter(vrmlname)
 
 
 
 def bg_load(bg):
     global canva,img
     img[0] = Image.open(bg)
-    img[0] = img[0].resize((1024, 700), Image.ANTIALIAS)
+    img[0] = img[0].resize((1366, 700), Image.ANTIALIAS)
     img[0] = ImageTk.PhotoImage(img[0])
     canva.create_image(0, 0, image=img[0], anchor=NW)
     canva.pack()
@@ -324,7 +328,7 @@ removebuilding = tk.Button(top, text="Remove Building", command=remove_building,
 buildingpic = tk.Button(top, text="BuildingPic", command=buildingpic, width=14).place(x=400, y=35)
 save = tk.Button(top, text="Save Map", command=saveMap, width=10).place(x=600, y=560)
 edit = tk.Button(top, text="Edit last wall", command=edit_coor, width=10).place(x=560, y=70)
-load = tk.Button(root, text="load", command=loadMap, width=10).place(x=700, y=660)
+load = tk.Button(root, text="load", command=loadMap, width=10).place(x=1100, y=660)
 addtree = tk.Button(top, text="Add tree", command=Addtree, width=10).place(x=260, y=245)
 addquestion = tk.Button(top, text="Add Question", command=AddQuestion, width=10).place(x=580, y=480)
 
@@ -340,7 +344,7 @@ def choose_bg():
     backgroundtxt="Background:"+ name + "\n"
     print(backgroundtxt)
     img[0] = Image.open(name)
-    img[0] = img[0].resize((1024, 700), Image.ANTIALIAS)
+    img[0] = img[0].resize((1366, 700), Image.ANTIALIAS)
     img[0] = ImageTk.PhotoImage(img[0])
     canva.create_image(0, 0, image=img[0], anchor=NW)
     canva.pack()

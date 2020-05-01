@@ -7,7 +7,7 @@ from PIL import ImageTk, Image
 class interfaz(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry("1024x700")
+        self.geometry("1366x700")
         self.config(bg="green", bd=25, relief="sunken")
         self.myframe = Frame(self)
         self.myframe.pack()
@@ -15,8 +15,8 @@ class interfaz(tk.Tk):
 
         # canvas = tk.Canvas(bg="grey",width=400,height=400)
         # canvas.pack()
-        tk.Button(self, text="Start Game", command=self.StartGame, width=16).place(x=750, y=500)
-        tk.Button(self, text="Designer",command=self.Designer, width=16).place(x=750, y=550)
+        tk.Button(self, text="Start Game", command=self.StartGame, width=16).place(x=950, y=500)
+        tk.Button(self, text="Designer",command=self.Designer, width=16).place(x=950, y=550)
 
 
     def Designer(self):

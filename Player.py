@@ -572,6 +572,14 @@ root.mainloop()
 
 
 '''
+Nombre: playersel
+Objectivo: Cargar animaciones para el avatar seleccionado.
+Precondiciones: Se selecciona un avatar.
+Postcondiciones: Se cargan las imágenes para la animación.
+Argumentos: p => nombre del avatar seleccionado
+Autor: Irving Lazu
+Fecha: 25 de abril de 2020
+###
 Nombre: loadMap
 Objectivo: Seleccionar un archivo que contenga un mapa y cargarlo para poder jugar.
 Precondiciones: Se presiona el botón de 'load'.
@@ -579,6 +587,15 @@ Postcondiciones: Se cargará un mapa para jugar.
 Argumentos: N/A
 Autor: Anthony Cuevas
 Fecha: 27 de marzo de 2020
+###
+Nombre: loadtree
+Objectivo: Cargar los árboles en el mapa.
+Precondiciones: Se presiona el botón de 'load'.
+Postcondiciones: Se cargarán los árboles del mapa seleccionado.
+Argumentos: treetype => imagen del árbol
+            location => posición en la que se ubicarán los árboles
+Autor: Anthony Cuevas
+Fecha: 26 de abril de 2020
 ###
 Nombre: min_max
 Objectivo: Función para determinar las coordenadas maximas y minimas de una pared.
@@ -615,6 +632,48 @@ Argumentos: bg => la ruta del archivo de la imagen de fondo.
 Autor: Anthony Cuevas
 Fecha: 7 de marzo de 2020
 ###
+Nombre: Map3D
+Objectivo: Cargar el mapa en 3D.
+Precondiciones: Se presiona el botón para abrir el mapa 3D.
+Postcondiciones: Se cargará un mapa 3D para jugar.
+Argumentos: N/A
+Autor: Anthony Cuevas
+Fecha: 28 de abril de 2020
+###
+Nombre: bpic_load
+Objectivo: Llevar la cuenta de cuantos edificios faltan y dar la opción de cargar mapa 3D.
+Precondiciones: Se descubre un edificio.
+Postcondiciones: Se cambia el valor de edificios que faltan por descubrir, cuándo este 
+                llegue a 0, se muestra el botón para 3D.
+Argumentos: N/A.
+Autor: Irving Lazu
+Fecha: 28 de abril de 2020
+###
+Nombre: questions
+Objectivo: Se carga el quiz de preguntas.
+Precondiciones: Se desea tomar el quiz.
+Postcondiciones: Se cargan 4 preguntas aleatorias del banco de preguntas del edificio.
+Argumentos: N/A.
+Autor: Anthony Cuevas
+Fecha: 27 de abril de 2020
+###
+Nombre: askoption
+Objectivo: Darle la opción al jugador de tomar el quiz de un edificio.
+Precondiciones: El jugador choca con un edificio.
+Postcondiciones: Sale un "pop-up" con la opción de tomar el quiz.
+Argumentos: N/A.
+Autor: Anthony Cuevas
+Fecha: 27 de abril de 2020
+###
+Nombre: submit
+Objectivo: Someter las contestaciones del quiz y mostrar el edificio.
+Precondiciones: Se contestan las preguntas del quiz.
+Postcondiciones: Se muestra el edificio si se contestaron al menos 3 de las 4 preguntas
+                 correctamente.
+Argumentos: N/A.
+Autor: Anthony Cuevas
+Fecha: 27 de abril de 2020
+###
 Nombre: leftkey
 Objectivo: Mover el jugador hacia la izquierda en el mapa.
 Precondiciones: Se presiona la tecla de 'izquierda'.
@@ -622,6 +681,7 @@ Postcondiciones: La imagen del jugador se desplaza hacia la izquierda en el mapa
 Argumentos: event => la tecla de 'izquierda' fue presionada
 Autor: Irving Lazu
 Fecha: 28 de marzo de 2020
+Update: Se va cambiando la imagen para añadir animación de caminar
 ###
 Nombre: rightkey
 Objectivo: Mover el jugador hacia la derecha en el mapa.
@@ -630,6 +690,7 @@ Postcondiciones: La imagen del jugador se desplaza hacia la derecha en el mapa.
 Argumentos: event => la tecla de 'derecha' fue presionada
 Autor: Irving Lazu
 Fecha: 28 de marzo de 2020
+Update: Se va cambiando la imagen para añadir animación de caminar
 ###
 Nombre: upkey
 Objectivo: Mover el jugador hacia arriba en el mapa.
@@ -638,6 +699,7 @@ Postcondiciones: La imagen del jugador se desplaza hacia arriba en el mapa.
 Argumentos: event => la tecla de 'arriba' fue presionada
 Autor: Enrique Marrero
 Fecha: 28 de marzo de 2020
+Update: Se va cambiando la imagen para añadir animación de caminar
 ###
 Nombre: downkey
 Objectivo: Mover el jugador hacia abajo en el mapa.
@@ -646,4 +708,5 @@ Postcondiciones: La imagen del jugador se desplaza hacia abajo en el mapa.
 Argumentos: event => la tecla de 'abajo' fue presionada
 Autor: Enrique Marrero
 Fecha: 28 de marzo de 2020
+Update: Se va cambiando la imagen para añadir animación de caminar
 '''

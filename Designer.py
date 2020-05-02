@@ -455,6 +455,14 @@ Argumentos: N/A
 Autor: Irving Lazu
 Fecha: 28 de marzo de 2020
 ###
+Nombre: Submit
+Objectivo: Se crea una pared manualmente.
+Precondiciones: Se ingresa la posicion de la pared, la textura y se presiona submit.
+Postcondiciones: Se dibuja la pared en el mapa.
+Argumentos: N/A.
+Autor: Irving Lazu
+Fecha: 28 de abril de 2020
+###
 Nombre: Texture
 Objectivo: Añadir una textura a un edificio
 Precondiciones: Presionar el botón de añadir una textura a un edificio en el interfaz de usuario
@@ -473,6 +481,7 @@ describe el mapa.
 Argumentos: N/A
 Autor: Anthony Cuevas
 Fecha: 7 de marzo de 2020
+Update: Se genera un archivo tipo .wrl que contiene el mapa en 3D
 ###
 Nombre: bg_load
 Objectivo: Función interna para cargar la imagen de fondo correspondiente al mapa que 
@@ -482,6 +491,14 @@ Postcondiciones: El mapa que se cargará tendrá la imagen de fondo correspondie
 Argumentos: bg => la ruta del archivo de la imagen de fondo.
 Autor: Anthony Cuevas
 Fecha: 7 de marzo de 2020
+###
+Nombre: edit_load
+Objectivo: Actualizar dibujo.
+Precondiciones: Se hace un cambio en el dibujo.
+Postcondiciones: Se actualizan los cambios en el mapa.
+Argumentos: N/A.
+Autor: Anthony Cuevas
+Fecha: 25 de abril de 2020
 ###
 Nombre: loadMap
 Objectivo: Seleccionar un archivo que contenga un mapa y cargarlo para poder jugar.
@@ -534,6 +551,15 @@ Argumentos: N/A
 Autor: Anthony Cuevas
 Fecha: 11 de abril de 2020
 ###
+Nombre: loadtree
+Objectivo: Cargar los árboles en el mapa.
+Precondiciones: Se presiona el botón de 'load'.
+Postcondiciones: Se cargarán los árboles del mapa seleccionado.
+Argumentos: treetype => imagen del árbol
+            location => posición en la que se ubicarán los árboles
+Autor: Anthony Cuevas
+Fecha: 26 de abril de 2020
+###
 Nombre: choose_bg
 Objectivo: Seleccionar una imagen de forma que pueda asignarla como fondo
 para un mapa.
@@ -542,6 +568,22 @@ Postcondiciones: Se cargará la imagen de fondo en el mapa.
 Argumentos: N/A
 Autor: Jean Merced
 Fecha: 4 de marzo de 2020
+###
+Nombre: motion
+Objectivo: Mostrar las coordenadas de donde se encuentra el 'mouse' actualmente.
+Precondiciones: Se mueve el 'mouse'.
+Postcondiciones: Se registran sus coordenadas.
+Argumentos: N/A
+Autor: Anthony Cuevas
+Fecha: 26 de abril de 2020
+###
+Nombre: pressed1
+Objectivo: Añadir un árbol en el mapa.
+Precondiciones: Se presiona un lugar en el mapa y luego se presiona el botón 'Add Tree'.
+Postcondiciones: Se ubica un árbol en la posición que se presionó.
+Argumentos: event => el ratón fue presionado
+Autor: Anthony Cuevas
+Fecha: 26 de abril de 2020
 ###
 Nombre: double_click
 Objectivo: Dibujar las líneas en la pantalla, de forma que pueda establecer las 
@@ -552,5 +594,21 @@ Postcondiciones: Se dibuja en pantalla una línea que representa una pared.
 Argumentos: event => el ratón fue presionado.
 Autor: Enrique Marrero
 Fecha: 4 de marzo de 2020
+###
+Nombre: pressed2
+Objectivo: Realizar 'Rubber-banding'.
+Precondiciones: Se está dibujando una pared.
+Postcondiciones: Se produce el efecto de 'Rubber-banding'.
+Argumentos: event => el ratón se mantiene presionado
+Autor: Irving Lazu
+Fecha: 28 de abril de 2020
+###
+Nombre: reset
+Objectivo: Remover el efecto de 'Rubber-banding'.
+Precondiciones: Se está haciendo 'Rubber-banding'.
+Postcondiciones: Se vuelve al estado normal.
+Argumentos: event => el ratón deja de ser presionado
+Autor: Irving Lazu
+Fecha: 28 de abril de 2020
 '''
 

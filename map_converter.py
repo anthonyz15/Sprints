@@ -127,3 +127,12 @@ def map_converter(map_filename):
     map3d_file.write(result)
     map_file.close()
     map3d_file.close()
+'''
+Nombre: map_converter
+Objetivo: generar el mapa en 3D
+Precondiciones: Se le da 'save' al mapa diseñado en 2D
+Postcondiciones: Se crea mapa en 3D con formato de VRML
+Argumentos: map_filname => el archivo de texto detallando el mapa en 2D
+Autor: Jean Merced
+Fecha: 27 de abril de 2020
+'''

@@ -217,6 +217,10 @@ def loadMap():
                 print(line[9:])
                 building_name=line[9:]
                 Buildingtxt+="Building:" +building_name
+            if line.startswith("BuildingImage:"):
+                print(line[14:])
+                building_image=line[14:]
+                Buildingtxt+="BuildingImage:" +building_image
             if line.startswith("Wall:"):
                 print(line[5:])
                 wall=line[5:]
